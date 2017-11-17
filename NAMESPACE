@@ -1,0 +1,7 @@
+#Export regular functions
+export("logihist","logidot","logibox","logi.hist.plot2")
+
+# imports
+import(ggplot2)
+import(stats)
+import(graphics)
