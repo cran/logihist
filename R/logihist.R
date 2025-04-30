@@ -112,7 +112,7 @@ if(is.null(fillb)) fillb<-NA
        p <- p+ geom_polygon(data=datospol[datospol$value==1,],aes(x=x,y=y, group = id),fill = fillb1, colour=colob1,size=sizeb1)+
             geom_polygon(data=datospol[datospol$value==0,],aes(x=x,y=y, group = id),fill = fillb0, colour=colob0,size=sizeb0)+
             scale_y_continuous( sec.axis = sec_axis(trans = ~., breaks=datos.ax$at, labels=datos.ax$labels, name=ylab2))+
-            guides(fill=FALSE)+ylab(laby)+xlab(labx)
+            guides(fill="none")+ylab(laby)+xlab(labx)
      if(pglm==TRUE) p <- p+   stat_smooth(method = "glm", method.args = list(family = "binomial"),se=se, size=sizeglm, colour=colglm)
 
 p

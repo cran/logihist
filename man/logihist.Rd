@@ -130,14 +130,14 @@ Marcelino de la Cruz
 }
 
 \seealso{
-The original implementation of the \code{\link[popbio]{logi.hist.plot}} function for the R graphic sytem in the package \pkg{popbio}.
+The original implementation of the \code{\link[popbio]{logi.hist.plot}} function for the R graphic sytem in the package \pkg{popbio}. 
 }
 \examples{
 
 # Get some data from package popbio
 data(aq.trans, package="popbio")
 aq.trans$survived<-aq.trans$fate!="dead"
-a<-subset(aq.trans, leaf<50 & stage!="recruit", c(leaf,survived))
+a <-subset(aq.trans, leaf<50 & stage!="recruit", c(leaf,survived))
 
 
 # Transform the "survived" variable in numeric
@@ -152,23 +152,23 @@ glm.a<- glm(survived~leaf, data=a, family=binomial)
 # Histograms
 # From individual variables
 # Modifying the appearence of histogram bins
-logihist(a$leaf,a$survived)
-logihist(a$leaf,a$survived, fillb="blue")
-logihist(a$leaf,a$survived, fillb="blue", colob="blue")
-logihist(a$leaf,a$survived, fillb=c("orange","blue"), colob=c("orange","blue"))
-logihist(a$leaf,a$survived, fillb=c("orange","blue"), colob=c("orange","blue"),
+logihist(a$leaf, a$survived)
+logihist(a$leaf, a$survived, fillb="blue")
+logihist(a$leaf, a$survived, fillb="blue", colob="blue")
+logihist(a$leaf, a$survived, fillb=c("orange","blue"), colob=c("orange","blue"))
+logihist(a$leaf, a$survived, fillb=c("orange","blue"), colob=c("orange","blue"),
 scale.hist=2)
 logihist(a$leaf,a$survived, fillb=c("orange","blue"), colob=c("orange","blue"),
   breaks=seq(0,50, by=2))
 
 # Modifying the combined plot using functions from ggpplot2
 
-logihist(a$leaf,a$survived, fillb=NA, sizeb=0.5, ylab2="Number of plants", )+
-   ylab("survived")+xlab("leaf")+ stat_smooth(method = "glm", method.args =
-   list(family = "binomial"), se=TRUE, size=1, colour="black")+theme_light()
+logihist(a$leaf, a$survived, fillb=NA, sizeb=0.5, ylab2="Number of plants") +
+   ylab("survived") + xlab("leaf") + stat_smooth(method = "glm", method.args =
+   list(family = "binomial"), se=TRUE, linewidth=1, colour="black") + theme_light()
 
 
-# The same fromm a glm object
+# The same from a glm object
 
 logihist(glm.a, fillb=NA, sizeb=0.5, ylab2="Number of plants", se=TRUE)+ 
            theme_light()
@@ -179,21 +179,22 @@ logihist(glm.a, fillb=NA, sizeb=0.5, ylab2="Number of plants", se=TRUE)+
 # Double dotplot from the individual variables, with different symbols for
 #  0 and 1 categories (black and void, redand solid respectively).
 
-logidot(a$leaf,a$survived,coldot=c(1,2),shapedot=c(1,19))
+logidot(a$leaf, a$survived, coldot=c(1,2), shapedot=c(1,19))
+
 
 # Try with a larger dot.
-logidot(a$leaf,a$survived,coldot=c(1,2),shapedot=c(1,19), sizedot=1)
+logidot(a$leaf, a$survived, coldot=c(1,2), shapedot=c(1,19), sizedot=1)
 
 # Add the fitted logistic curve and change the presentation using
-# respectively an stat and a theme from ggplot2 
+# respectively a stat and a theme from ggplot2 
 
 logidot(a$leaf,a$survived, coldot=c(1,2),shapedot=c(1,19),  sizedot=1)+
     stat_smooth(method = "glm", method.args = list(family = "binomial"),
-           se=FALSE, size=2)+theme_light()+ylab("leaf")+xlab("survived")
+           se=FALSE, size=2) + theme_light() + ylab("leaf")+xlab("survived")
 
 # Get the same graphic directly form the fitted glm object
 logidot(glm.a, coldot=c(1,2),shapedot=c(1,19),  sizedot=1, sizeglm=2,
-           colglm="blue")+theme_light()
+           colglm="blue") + theme_light()
 
 
 
